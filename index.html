@@ -4,302 +4,449 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Solicitudes Web - MECM</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css" />
+    <title>MECM - Soluciones Web Profesionales</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #2d3561 0%, #3d4575 100%);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
+            background: linear-gradient(180deg, #7c5fa5 0%, #6b5b95 30%, #8a7fbf 50%, #b8a8d8 100%);
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Estrellas */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Sol/Luna */
+        .sun {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.8), rgba(255, 200, 150, 0.4));
+            border-radius: 50%;
+            top: 10%;
+            right: 8%;
+            box-shadow: 0 0 80px rgba(255, 200, 150, 0.4);
+            z-index: 1;
+        }
+
+        /* Montañas */
+        .mountains {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            pointer-events: none;
+        }
+
+        .mountain {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 250px solid #6b1f4f;
+            opacity: 0.8;
+        }
+
+        .mountain:nth-child(1) {
+            left: -10%;
+            border-bottom-color: #8b2f5f;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .mountain:nth-child(2) {
+            left: 15%;
+            border-left-width: 120px;
+            border-right-width: 120px;
+            border-bottom-width: 200px;
+            border-bottom-color: #6b1f4f;
+            animation: float 5s ease-in-out infinite 0.5s;
+        }
+
+        .mountain:nth-child(3) {
+            left: 35%;
+            border-left-width: 180px;
+            border-right-width: 180px;
+            border-bottom-width: 300px;
+            border-bottom-color: #8b2f5f;
+            animation: float 6s ease-in-out infinite 1s;
+        }
+
+        .mountain:nth-child(4) {
+            left: 60%;
+            border-left-width: 140px;
+            border-right-width: 140px;
+            border-bottom-width: 230px;
+            border-bottom-color: #6b1f4f;
+            animation: float 5.5s ease-in-out infinite 0.7s;
+        }
+
+        .mountain:nth-child(5) {
+            left: 80%;
+            border-left-width: 160px;
+            border-right-width: 160px;
+            border-bottom-width: 270px;
+            border-bottom-color: #8b2f5f;
+            animation: float 4.5s ease-in-out infinite 1.2s;
+        }
+
+        .mountain:nth-child(6) {
+            right: -5%;
+            border-left-width: 120px;
+            border-right-width: 120px;
+            border-bottom-width: 200px;
+            border-bottom-color: #6b1f4f;
+            animation: float 5.8s ease-in-out infinite 0.9s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Árboles */
+        .trees {
+            position: absolute;
+            bottom: 15%;
+            left: 0;
+            width: 100%;
+            height: 35%;
+            pointer-events: none;
+        }
+
+        .tree {
+            position: absolute;
+            bottom: 0;
+            width: 20px;
+            background: #3d1a2f;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            opacity: 0.6;
+        }
+
+        .tree:nth-child(1) {
+            height: 80px;
+            left: 5%;
+            animation: sway 3s ease-in-out infinite;
+        }
+
+        .tree:nth-child(2) {
+            height: 60px;
+            left: 12%;
+            animation: sway 4s ease-in-out infinite 0.5s;
+        }
+
+        .tree:nth-child(3) {
+            height: 90px;
+            left: 22%;
+            animation: sway 3.5s ease-in-out infinite 1s;
+        }
+
+        .tree:nth-child(4) {
+            height: 70px;
+            left: 32%;
+            animation: sway 4.5s ease-in-out infinite 0.3s;
+        }
+
+        .tree:nth-child(5) {
+            height: 85px;
+            left: 42%;
+            animation: sway 3.8s ease-in-out infinite 0.8s;
+        }
+
+        .tree:nth-child(6) {
+            height: 75px;
+            left: 55%;
+            animation: sway 4.2s ease-in-out infinite 0.2s;
+        }
+
+        .tree:nth-child(7) {
+            height: 80px;
+            left: 68%;
+            animation: sway 3.6s ease-in-out infinite 1.2s;
+        }
+
+        .tree:nth-child(8) {
+            height: 65px;
+            left: 80%;
+            animation: sway 4s ease-in-out infinite 0.7s;
+        }
+
+        .tree:nth-child(9) {
+            height: 90px;
+            left: 90%;
+            animation: sway 3.9s ease-in-out infinite 0.4s;
+        }
+
+        @keyframes sway {
+
+            0%,
+            100% {
+                transform: translateX(0px);
+            }
+
+            50% {
+                transform: translateX(3px);
+            }
+        }
+
+        /* Lago */
+        .lake {
+            position: absolute;
+            bottom: 10%;
+            left: 25%;
+            width: 50%;
+            height: 8%;
+            background: linear-gradient(180deg, rgba(75, 40, 80, 0.4) 0%, rgba(60, 30, 70, 0.6) 100%);
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
         }
 
         .container {
-            background: transparent;
-            padding: 30px;
-            border-radius: 12px;
+            max-width: 800px;
             width: 100%;
-            max-width: 500px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            padding: 40px 20px;
+            animation: fadeIn 1s ease-out;
         }
 
-        h2 {
-            color: #ff4d8f;
-            margin-top: 0;
-            margin-bottom: 10px;
-            text-align: left;
-            font-size: 32px;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: white;
+            font-size: 64px;
+            margin-bottom: 20px;
             font-weight: bold;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
         }
 
-        .subtitle {
-            color: #b0b8d4;
-            margin-bottom: 25px;
-            text-align: left;
+        .tagline {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .description {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 35px;
+            border-radius: 20px;
+            margin-bottom: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .description p {
+            color: rgba(255, 255, 255, 0.9);
             font-size: 16px;
-        }
-
-        .group {
+            line-height: 1.8;
             margin-bottom: 15px;
         }
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #b0b8d4;
-            font-size: 14px;
+        .description p:last-child {
+            margin-bottom: 0;
         }
 
-        input,
-        textarea {
-            width: 100%;
-            padding: 14px 16px;
-            border: none;
-            border-radius: 12px;
-            box-sizing: border-box;
-            font-size: 14px;
-            background: #556080;
-            color: #fff;
-            transition: background 0.3s;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: #8b95b8;
-        }
-
-        input:focus,
-        textarea:focus {
-            outline: none;
-            background: #6a7a95;
-        }
-
-        textarea {
-            resize: vertical;
-            height: 100px;
-        }
-
-        button {
-            background: #ff4d8f;
+        .cta-button {
+            background: linear-gradient(135deg, #5b4fb8 0%, #7b5fc8 100%);
             color: white;
             border: none;
-            padding: 14px;
-            width: auto;
-            min-width: 160px;
-            border-radius: 25px;
-            font-size: 16px;
+            padding: 16px 50px;
+            font-size: 18px;
             font-weight: bold;
+            border-radius: 30px;
             cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background: #ff2a7c;
-            transform: translateY(-2px);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background: rgba(255, 77, 143, 0.2);
-            color: #ff4d8f;
-            border: 1px solid #ff4d8f;
-            border-radius: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             text-decoration: none;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .back-button:hover {
-            background: #ff4d8f;
-            color: white;
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #7b5fc8 0%, #9b7fd8 100%);
         }
 
-        dialog {
-            border: none;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 300px;
-            background: #3d4575;
+        .cta-button:active {
+            transform: translateY(-1px);
         }
 
-        dialog::backdrop {
-            background: rgba(0, 0, 0, 0.6);
+        .footer {
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
         }
 
-        dialog h3 {
-            color: #ff4d8f;
-            margin-top: 0;
-        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 42px;
+            }
 
-        dialog p {
-            color: #b0b8d4;
-        }
+            .tagline {
+                font-size: 18px;
+            }
 
-        dialog button {
-            background: #ff4d8f;
-            color: white;
-            margin-top: 15px;
-            padding: 10px 24px;
-            width: auto;
-            font-size: 14px;
-            border-radius: 20px;
-        }
+            .sun {
+                width: 120px;
+                height: 120px;
+            }
 
-        dialog button:hover {
-            background: #ff2a7c;
+            .description {
+                padding: 20px;
+            }
+
+            .description p {
+                font-size: 14px;
+            }
+
+            .cta-button {
+                padding: 14px 35px;
+                font-size: 16px;
+            }
+
+            .mountain {
+                border-left-width: 80px !important;
+                border-right-width: 80px !important;
+                border-bottom-width: 130px !important;
+            }
         }
     </style>
 </head>
 
 <body>
+    <div class="stars" id="stars"></div>
+    <div class="sun"></div>
 
-    <div class="container">
-        <a href="home.html" class="back-button">← Volver al Inicio</a>
-
-        <h2>Formulario Web MECM</h2>
-        <p class="subtitle">Solicita tu proyecto web personalizado</p>
-        <form id="solicitudForm">
-            <div class="group">
-                <label>Nombre Completo:</label>
-                <input type="text" id="nombre" placeholder="Ej: Juan Pérez" required>
-            </div>
-
-            <div class="group">
-                <label>Correo Electrónico:</label>
-                <input type="email" id="correo" placeholder="Ej: juan@correo.com" required>
-            </div>
-
-            <div class="group">
-                <label>Número de Celular (WhatsApp):</label>
-                <input type="tel" id="telefono" placeholder="Ej: 71234567" required>
-            </div>
-
-            <div class="group">
-                <label>Título del Proyecto:</label>
-                <input type="text" id="titulo" placeholder="Ej: Mi Tienda Online" required>
-            </div>
-
-            <div class="group">
-                <label>Descripción del Sitio:</label>
-                <textarea id="descripcion" placeholder="Explica brevemente qué necesitas en tu página..."
-                    required></textarea>
-            </div>
-
-            <div class="group">
-                <label>Observaciones Adicionales:</label>
-                <textarea id="obsCliente" placeholder="Algún detalle o requerimiento extra..."></textarea>
-            </div>
-
-            <div class="group">
-                <label>Subir Archivo de Referencia:</label>
-                <input type="file" id="archivo" required>
-            </div>
-
-            <button type="submit" id="btnEnviar">Enviar Solicitud</button>
-        </form>
+    <div class="mountains">
+        <div class="mountain"></div>
+        <div class="mountain"></div>
+        <div class="mountain"></div>
+        <div class="mountain"></div>
+        <div class="mountain"></div>
+        <div class="mountain"></div>
     </div>
 
-    <dialog id="modalExito">
-        <h3 style="color: #ff4d8f; margin-top:0;">✔ ¡Solicitud Enviada!</h3>
-        <p style="color: #b0b8d4; font-size: 16px;">
-            Tu solicitud ha sido recibida correctamente.
-        </p>
-        <p style="color: #b0b8d4; font-size: 16px;">
-            Revisa tu correo electrónico para más detalles de tu proyecto.
-        </p>
-        <button onclick="cerrarModal()">Entendido</button>
-    </dialog>
+    <div class="lake"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+    <div class="trees">
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+        <div class="tree"></div>
+    </div>
+
+    <div class="container">
+        <h1>MECM</h1>
+        <p class="tagline">Soluciones Web Profesionales</p>
+
+        <div class="description">
+            <p>
+                Somos especialistas en diseño y desarrollo web de alta calidad.
+                Transformamos tus ideas en plataformas digitales innovadoras que impulsan tu negocio.
+            </p>
+            <p>
+                Con más de 10 años de experiencia, ofrecemos soluciones personalizadas
+                que se adaptan a las necesidades específicas de tu empresa.
+            </p>
+        </div>
+
+        <a href="solicitud.html" class="cta-button">Solicitar Proyecto Web</a>
+
+        <div class="footer">
+            <p>&copy; 2026 MECM - Maria Elena Calle Mamani</p>
+        </div>
+    </div>
+
     <script>
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzreodFn9fOGyGSBHLP5QbVdw6PBiKECg--SmVMPkHRXLKu3nyy7QoXY_-wh7exEVcv/exec";
-
-        // Inicializar intl-tel-input
-        const telefonoInput = document.querySelector("#telefono");
-        const iti = window.intlTelInput(telefonoInput, {
-            initialCountry: "bo",
-            preferredCountries: ["bo", "ar", "pe", "cl"],
-            separateDialCode: true,
-            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"
-        });
-
-        // Función para generar número de seguimiento único
-        function generarNumeroSeguimiento() {
-            const ahora = new Date();
-            const año = ahora.getFullYear();
-            const mes = String(ahora.getMonth() + 1).padStart(2, '0');
-            const dia = String(ahora.getDate()).padStart(2, '0');
-            const horas = String(ahora.getHours()).padStart(2, '0');
-            const minutos = String(ahora.getMinutes()).padStart(2, '0');
-            const segundos = String(ahora.getSeconds()).padStart(2, '0');
-
-            return `SOLC-${año}-${mes}${dia}${horas}${minutos}${segundos}`;
-        }
-
-        document.getElementById('solicitudForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const btn = document.getElementById('btnEnviar');
-            btn.disabled = true;
-            btn.innerText = "Procesando...";
-
-            const fileInput = document.getElementById('archivo').files[0];
-            const numeroSeguimiento = generarNumeroSeguimiento();
-
-            // Conversión nativa del archivo a Base64
-            const reader = new FileReader();
-            reader.readAsDataURL(fileInput);
-
-            reader.onload = async function () {
-                const base64Data = reader.result.split(',')[1];
-
-                const payload = {
-                    numeroSeguimiento: numeroSeguimiento,
-                    nombre: document.getElementById('nombre').value,
-                    correo: document.getElementById('correo').value,
-                    telefono: iti.getNumber(),
-                    titulo: document.getElementById('titulo').value,
-                    descripcion: document.getElementById('descripcion').value,
-                    obsCliente: document.getElementById('obsCliente').value,
-                    fileData: base64Data,
-                    fileType: fileInput.type,
-                    fileName: fileInput.name,
-                    fecha: new Date().toLocaleString('es-BO')
-                };
-
-                try {
-                    const response = await fetch(WEB_APP_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    document.getElementById('solicitudForm').reset();
-                    document.getElementById('modalExito').showModal();
-                } catch (error) {
-                    alert("Error al conectar con el servidor backend.");
-                } finally {
-                    btn.disabled = false;
-                    btn.innerText = "Enviar Solicitud";
-                }
-            };
-        });
-
-        function cerrarModal() {
-            document.getElementById('modalExito').close();
+        // Generar estrellas
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 40 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (2 + Math.random() * 2) + 's';
+            starsContainer.appendChild(star);
         }
     </script>
 </body>
