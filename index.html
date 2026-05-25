@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Solicitudes Web - MECM</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #2d3561 0%, #3d4575 100%);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: transparent;
+            padding: 30px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            color: #ff4d8f;
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-align: left;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            color: #b0b8d4;
+            margin-bottom: 25px;
+            text-align: left;
+            font-size: 16px;
+        }
+
+        .group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #b0b8d4;
+            font-size: 14px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: none;
+            border-radius: 12px;
+            box-sizing: border-box;
+            font-size: 14px;
+            background: #556080;
+            color: #fff;
+            transition: background 0.3s;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #8b95b8;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            background: #6a7a95;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        button {
+            background: #ff4d8f;
+            color: white;
+            border: none;
+            padding: 14px;
+            width: auto;
+            min-width: 160px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #ff2a7c;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 77, 143, 0.2);
+            color: #ff4d8f;
+            border: 1px solid #ff4d8f;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: #ff4d8f;
+            color: white;
+        }
+
+        dialog {
+            border: none;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 300px;
+            background: #3d4575;
+        }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        dialog h3 {
+            color: #ff4d8f;
+            margin-top: 0;
+        }
+
+        dialog p {
+            color: #b0b8d4;
+        }
+
+        dialog button {
+            background: #ff4d8f;
+            color: white;
+            margin-top: 15px;
+            padding: 10px 24px;
+            width: auto;
+            font-size: 14px;
+            border-radius: 20px;
+        }
+
+        dialog button:hover {
+            background: #ff2a7c;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <a href="home.html" class="back-button">← Volver al Inicio</a>
+
+        <h2>Formulario Web MECM</h2>
+        <p class="subtitle">Solicita tu proyecto web personalizado</p>
+        <form id="solicitudForm">
+            <div class="group">
+                <label>Nombre Completo:</label>
+                <input type="text" id="nombre" placeholder="Ej: Juan Pérez" required>
+            </div>
+
+            <div class="group">
+                <label>Correo Electrónico:</label>
+                <input type="email" id="correo" placeholder="Ej: juan@correo.com" required>
+            </div>
+
+            <div class="group">
+                <label>Número de Celular (WhatsApp):</label>
+                <input type="tel" id="telefono" placeholder="Ej: 71234567" required>
+            </div>
+
+            <div class="group">
+                <label>Título del Proyecto:</label>
+                <input type="text" id="titulo" placeholder="Ej: Mi Tienda Online" required>
+            </div>
+
+            <div class="group">
+                <label>Descripción del Sitio:</label>
+                <textarea id="descripcion" placeholder="Explica brevemente qué necesitas en tu página..."
+                    required></textarea>
+            </div>
+
+            <div class="group">
+                <label>Observaciones Adicionales:</label>
+                <textarea id="obsCliente" placeholder="Algún detalle o requerimiento extra..."></textarea>
+            </div>
+
+            <div class="group">
+                <label>Subir Archivo de Referencia:</label>
+                <input type="file" id="archivo" required>
+            </div>
+
+            <button type="submit" id="btnEnviar">Enviar Solicitud</button>
+        </form>
+    </div>
+
+    <dialog id="modalExito">
+        <h3 style="color: #ff4d8f; margin-top:0;">✔ ¡Solicitud Enviada!</h3>
+        <p style="color: #b0b8d4; font-size: 16px;">
+            Tu solicitud ha sido recibida correctamente.
+        </p>
+        <p style="color: #b0b8d4; font-size: 16px;">
+            Revisa tu correo electrónico para más detalles de tu proyecto.
+        </p>
+        <button onclick="cerrarModal()">Entendido</button>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+    <script>
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzreodFn9fOGyGSBHLP5QbVdw6PBiKECg--SmVMPkHRXLKu3nyy7QoXY_-wh7exEVcv/exec";
+
+        // Inicializar intl-tel-input
+        const telefonoInput = document.querySelector("#telefono");
+        const iti = window.intlTelInput(telefonoInput, {
+            initialCountry: "bo",
+            preferredCountries: ["bo", "ar", "pe", "cl"],
+            separateDialCode: true,
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/utils.js"
+        });
+
+        // Función para generar número de seguimiento único
+        function generarNumeroSeguimiento() {
+            const ahora = new Date();
+            const año = ahora.getFullYear();
+            const mes = String(ahora.getMonth() + 1).padStart(2, '0');
+            const dia = String(ahora.getDate()).padStart(2, '0');
+            const horas = String(ahora.getHours()).padStart(2, '0');
+            const minutos = String(ahora.getMinutes()).padStart(2, '0');
+            const segundos = String(ahora.getSeconds()).padStart(2, '0');
+
+            return `SOLC-${año}-${mes}${dia}${horas}${minutos}${segundos}`;
+        }
+
+        document.getElementById('solicitudForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnEnviar');
+            btn.disabled = true;
+            btn.innerText = "Procesando...";
+
+            const fileInput = document.getElementById('archivo').files[0];
+            const numeroSeguimiento = generarNumeroSeguimiento();
+
+            // Conversión nativa del archivo a Base64
+            const reader = new FileReader();
+            reader.readAsDataURL(fileInput);
+
+            reader.onload = async function () {
+                const base64Data = reader.result.split(',')[1];
+
+                const payload = {
+                    numeroSeguimiento: numeroSeguimiento,
+                    nombre: document.getElementById('nombre').value,
+                    correo: document.getElementById('correo').value,
+                    telefono: iti.getNumber(),
+                    titulo: document.getElementById('titulo').value,
+                    descripcion: document.getElementById('descripcion').value,
+                    obsCliente: document.getElementById('obsCliente').value,
+                    fileData: base64Data,
+                    fileType: fileInput.type,
+                    fileName: fileInput.name,
+                    fecha: new Date().toLocaleString('es-BO')
+                };
+
+                try {
+                    const response = await fetch(WEB_APP_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    document.getElementById('solicitudForm').reset();
+                    document.getElementById('modalExito').showModal();
+                } catch (error) {
+                    alert("Error al conectar con el servidor backend.");
+                } finally {
+                    btn.disabled = false;
+                    btn.innerText = "Enviar Solicitud";
+                }
+            };
+        });
+
+        function cerrarModal() {
+            document.getElementById('modalExito').close();
+        }
+    </script>
+</body>
+
+</html>
